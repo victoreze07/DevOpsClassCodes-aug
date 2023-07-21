@@ -5,7 +5,7 @@ pipeline {
         stage('compile') {
             steps {
                 echo 'Compile stage'
-                git branch: 'main', url: 'https://github.com/victoreze07/payment.git'
+                git branch: 'main', url: 'https://github.com/victoreze07/DevOpsClassCodes-aug.git'
                 sh 'mvn compile'
             }
         }
