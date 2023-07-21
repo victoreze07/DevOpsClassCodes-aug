@@ -1,23 +1,17 @@
 pipeline {
     agent any
 
-    environment {   
-
-    DOCKERHUB_CREDENTIALS= credentials('docker-hub-credentials')
-
-       }
-
     stages {
         stage('compile') {
             steps {
-                echo 'Compiling Stage'
-                git 'https://github.com/awsdevopsclass2022/DevOpsClassCodes-aug.git'
+                echo 'Compile stage'
+                git branch: 'main', url: 'https://github.com/victoreze07/payment.git'
                 sh 'mvn compile'
             }
         }
         stage('test') {
             steps {
-                echo 'Testing Stage'
+                echo 'test stage'
                 sh 'mvn test'
             }
         }
@@ -27,40 +21,40 @@ pipeline {
                 sh 'mvn package'
             }
         }
+        stage('Aqua-Scan') {
+            steps {
+                echo 'Store the payment.war file in Nexus'
+            }
+        }
+        stage('Publish to Nexus') {
+            steps {
+                echo 'Scan for vurnerbilities'
+            }
+        }
         stage('Docker Build') {
             steps {
-                echo 'Docker docker build stage'  
-                sh 'docker build -t devopsclass2022/address-app:${JOB_NAME}-${BUILD_NUMBER} .' 
-                //sh 'docker login -u devopsclass2022 -p  Done24Money@' 
-               // sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-        
+                echo 'Docker'
             }
         }
-
-
-        stage('Docker Login') {
-            steps {
- 
-                //sh 'docker login -u devopsclass2022 -p  Done24Money@' 
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-        
-            }
-        }
-
-
-
         stage('Push Image to Dockerhub') {
             steps {
                 echo 'Docker Registry'
-                sh 'docker push devopsclass2022/address-app:${JOB_NAME}-${BUILD_NUMBER}'
             }
-        } 
-
-        stage('Clean Up Docker Image') {
+        }
+        stage('Deploy on Dev Environment') {
             steps {
-                sh 'docker rmi devopsclass2022/address-app:${JOB_NAME}-${BUILD_NUMBER}'
+                echo 'Deploy on Development Server'
+            }
+        }
+        stage('Deploy on Pre Prod Environment') {
+            steps {
+                echo 'Deploy on Pre prod Server'
+            }
+        }
+        stage('Deploy on Prod Environment') {
+            steps {
+                echo 'Deploy on prod Servers'
             }
         }
     }
-
 }
