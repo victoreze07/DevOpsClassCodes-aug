@@ -29,7 +29,7 @@ pipeline {
         }
         stage('docker login') {
             steps {
-                echo 'Login into Dockerhub'
+                echo 'Login to Dockerhub'
             }
         }
         stage('docker push') {
