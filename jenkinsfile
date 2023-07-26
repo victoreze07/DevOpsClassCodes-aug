@@ -33,12 +33,15 @@ pipeline {
         }
         stage('Docker Build') {
             steps {
-                echo 'Docker'
+                echo 'Docker build stage'
+                sh 'docker login -u victoreze07 -p Incredible@1'
+                sh 'docker build -t victoreze07/addressbook:v1 .'
             }
         }
         stage('Push Image to Dockerhub') {
             steps {
                 echo 'Docker Registry'
+                sh 'docker push victoreze07/addressbook:v1'
             }
         }
         stage('Deploy on Dev Environment') {
