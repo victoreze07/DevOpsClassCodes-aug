@@ -34,7 +34,7 @@ pipeline {
         }
         stage('docker push') {
             steps {
-                echo 'Push image to dokcker'
+                echo 'Push image to docker'
             }
         }
     }
