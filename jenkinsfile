@@ -21,11 +21,6 @@ pipeline {
                 sh 'mvn package'
             }
         }
-        stage('Aqua-Scan') {
-            steps {
-                echo 'Store the payment.war file in Nexus'
-            }
-        }
         stage('Publish to Nexus') {
             steps {
                 echo 'Scan for vurnerbilities'
