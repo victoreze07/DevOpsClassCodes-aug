@@ -4,22 +4,26 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo 'Hello World!'
+                echo 'GIT clone'
+                git 'https://github.com/victoreze07/DevOpsClassCodes-aug.git'
             }
         }
         stage('Compile') {
             steps {
                 echo 'Compile the code'
+                sh 'mvn compile'
             }
         }
         stage('Test') {
             steps {
                 echo 'Test the code'
+                sh 'mvn test'
             }
         }
         stage('Package') {
             steps {
                 echo 'Package the code'
+                sh 'mvn package'
             }
         }
         stage('docker build') {
