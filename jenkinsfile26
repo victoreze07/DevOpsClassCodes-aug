@@ -28,7 +28,7 @@ pipeline {
         }
         stage('docker build') {
             steps {
-                echo 'docker build -t victoreze07/addressbook:${BUILD_NUMBER} .'
+                echo 'docker build -t victoreze07/addressbook:latest .'
             }
         }
         stage('docker login') {
@@ -40,7 +40,7 @@ pipeline {
         stage('docker push') {
             steps {
                 echo 'Push image to docker'
-                sh 'docker push victoreze07/addressbook:${BUILD_NUMBER} '
+                sh 'docker push victoreze07/addressbook:latest'
             }
         }
     }
