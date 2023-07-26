@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('Compile') {
+            steps {
+                echo 'Compile the code'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Test the code'
+            }
+        }
+        stage('Package') {
+            steps {
+                echo 'Package the code'
+            }
+        }
+        stage('docker build') {
+            steps {
+                echo 'build docker image'
+            }
+        }
+        stage('docker login') {
+            steps {
+                echo 'Login into Dockerhub'
+            }
+        }
+        stage('docker push') {
+            steps {
+                echo 'Push image to dokcker'
+            }
+        }
+    }
+}
