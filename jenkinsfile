@@ -29,7 +29,6 @@ pipeline {
         stage('Docker Build') {
             steps {
                 echo 'Docker build stage'
-                sh 'apt  install docker.io -y'
                 sh 'docker login -u victoreze07 -p Incredible@1'
                 sh 'docker build -t victoreze07/addressbook:v1 .'
             }
