@@ -41,6 +41,7 @@ pipeline {
             steps {
                 echo 'docker tag addressbook:1 victoreze07/addressbook:1'
             }
+        }    
         stage('docker push') {
             steps {
                 echo 'Push image to docker'
