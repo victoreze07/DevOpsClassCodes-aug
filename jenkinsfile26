@@ -28,7 +28,8 @@ pipeline {
         }
         stage('docker build') {
             steps {
-                echo 'docker build -t victoreze07/addressbook:1 .'
+                echo 'build image'
+                sh 'docker build -t victoreze07/addressbook:1 .'
             }
         }
         stage('docker login') {
@@ -36,12 +37,7 @@ pipeline {
                 echo 'Login to Dockerhub'
                 sh 'docker login -u victoreze07 -p Incredible@1'
             }
-        }
-        stage('docker tag') {
-            steps {
-                echo 'docker tag addressbook:1 victoreze07/addressbook:1'
-            }
-        }    
+        } 
         stage('docker push') {
             steps {
                 echo 'Push image to docker'
