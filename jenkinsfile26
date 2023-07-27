@@ -26,9 +26,14 @@ pipeline {
                 sh 'mvn package'
             }
         }
+        stage('docker tag') {
+            steps {
+                echo 'docker tag addressbook:1 victoreze07/addressbook:1'
+            }
+        }
         stage('docker build') {
             steps {
-                echo 'docker build -t victoreze07/addressbook:latest .'
+                echo 'docker build -t victoreze07/addressbook:1 .'
             }
         }
         stage('docker login') {
@@ -40,7 +45,7 @@ pipeline {
         stage('docker push') {
             steps {
                 echo 'Push image to docker'
-                sh 'docker push victoreze07/addressbook:latest '
+                sh 'docker push victoreze07/addressbook:1 '
             }
         }
     }
